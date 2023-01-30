@@ -11,10 +11,10 @@ type resturant = {
   address: string;
 };
 
-const apiKey = 'AIzaSyBj2dU8iIBi8hfinE2S4HkJkrVJ4HApG-E';
+const apiKey = 'AIzaSyBj2dU8iIBi8hfinE2S4HkJkrVJ4HApG-E';//move to config
 
 const pool = new Pool({
-    connectionString: 'postgres://tcnqdocx:emo367LMybZni_Tu5a8c9vs1bo5CM_sH@trumpet.db.elephantsql.com:5432/tcnqdocx',
+    connectionString: 'postgres://tcnqdocx:emo367LMybZni_Tu5a8c9vs1bo5CM_sH@trumpet.db.elephantsql.com:5432/tcnqdocx',//move to config
 });
 
 async function getAddress(lat: number, lon: number): Promise<string> {

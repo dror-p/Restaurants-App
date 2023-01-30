@@ -1,7 +1,7 @@
 import { Client } from 'pg';
 
 const client = new Client({
-    connectionString: 'postgres://tcnqdocx:emo367LMybZni_Tu5a8c9vs1bo5CM_sH@trumpet.db.elephantsql.com:5432/tcnqdocx',
+    connectionString: 'postgres://tcnqdocx:emo367LMybZni_Tu5a8c9vs1bo5CM_sH@trumpet.db.elephantsql.com:5432/tcnqdocx',//move to config
 });
 
 export const connect = async () => {
