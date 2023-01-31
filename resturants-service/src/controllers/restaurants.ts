@@ -62,7 +62,8 @@ export const deleteRestaurant = async (req: Request, res: Response) => {
     try {
         //change to delete to the csv not the pg
         await query('DELETE FROM restaurants WHERE name = $1', [name]);
-        res.status(200).send(`Restaurant deleted with name: ${name}`);
+        //res.status(200).send(`Restaurant deleted with name: ${name}`);
+        res.status(200).json({ message: `Restaurant deleted with name: ${name}` });
     } catch (err) {
         if(err instanceof Error){
             console.log(err);
