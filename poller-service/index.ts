@@ -4,7 +4,7 @@ import rp from 'request-promise';
 import { parse } from 'csv-parse';
 import { Pool, PoolClient } from 'pg';
 
-type resturant = {
+type restaurant = {
   name: string;
   type: string;
   phone: string;
@@ -25,7 +25,7 @@ async function getAddress(lat: number, lon: number): Promise<string> {
         if (jsonData.results.length > 0) {
             return jsonData.results[0].formatted_address;
         } else {
-            throw new Error("No address found for the given coordinates");
+            throw new Error("No address found for the given coordinates: " + lat + ", " + lon);
         }
     } catch (err) {
         console.log("Error: " + err);
@@ -36,7 +36,7 @@ async function getAddress(lat: number, lon: number): Promise<string> {
 let previousTimestamp = 0;
 
 const checkAndRun = async () => {
-    const csvFilePath = path.resolve(__dirname, 'files/resturants.csv');  
+    const csvFilePath = path.resolve(__dirname, 'files/restaurants.csv');  
     const headers = ['name', 'type', 'phone', 'address'];
     const fileStat = await fs.promises.stat(csvFilePath);
 
@@ -59,7 +59,7 @@ const checkAndRun = async () => {
           }
         return columnValue;                    
     }
-  }, (error, result: resturant[]) => {
+  }, (error, result: restaurant[]) => {
     if (error) {
       console.error(error);
     }
@@ -73,13 +73,13 @@ const checkAndRun = async () => {
 }
 setInterval(checkAndRun, 1000);
 
-async function insertToDB(restaurants: resturant[]) {
+async function insertToDB(restaurants: restaurant[]) {
     try {
       const client: PoolClient = await pool.connect();
-      await client.query('DELETE FROM resturants');
+      await client.query('DELETE FROM restaurants');
       for (const restaurant of restaurants) {
         const { name, type, address, phone } = restaurant;
-        const query = `INSERT INTO resturants (name, resturanttype, address, phone) VALUES ('${name}', '${type}', '${address}', '${phone}')`;
+        const query = `INSERT INTO restaurants (name, restauranttype, address, phone) VALUES ('${name}', '${type}', '${address}', '${phone}')`;
         await client.query(query);
       }
       client.release();

@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
-export class Resturant {
+export class Restaurant {
     //add ID column to manage the resaurants table better
     @PrimaryColumn()
     name!: string;
 
     @Column()
-    resturanttype!: string;
+    restauranttype!: string;
 
     @Column()
     address!: string;

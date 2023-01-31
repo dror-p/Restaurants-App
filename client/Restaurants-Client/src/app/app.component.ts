@@ -19,19 +19,19 @@ export class AppComponent implements OnInit {
     });
   }
 
-  addRestaurant(name: string, resturanttype: string, phone: string, address: string) {
-    this.restaurantService.addRestaurant({ name, resturanttype, phone, address } as Restaurant)
+  addRestaurant(name: string, restauranttype: string, phone: string, address: string) {
+    this.restaurantService.addRestaurant({ name, restauranttype, phone, address } as Restaurant)
       .subscribe(restaurant => {
         this.restaurants.push(restaurant);
       });
   }
 
-  updateRestaurant(name: string, resturanttype: string, phone: string, address: string) {
-    this.restaurantService.updateRestaurant({ name, resturanttype, phone, address } as Restaurant)
+  updateRestaurant(name: string, restauranttype: string, phone: string, address: string) {
+    this.restaurantService.updateRestaurant({ name, restauranttype, phone, address } as Restaurant)
       .subscribe(() => {
         this.restaurants = this.restaurants.map(restaurant => {
           if (restaurant.name === name) {
-            return { name, resturanttype, phone, address };
+            return { name, restauranttype, phone, address };
           }
           return restaurant;
         });

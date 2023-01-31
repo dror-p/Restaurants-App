@@ -29,6 +29,6 @@ export class RestaurantService {
   }
 
   deleteRestaurant(name: string): Observable<Restaurant> {
-    return this.http.delete<Restaurant>(`${this.restaurantsUrl}/restaurants/${name}`);
+    return this.http.delete<Restaurant>(`${this.restaurantsUrl}/${name}`);
   }
 }
