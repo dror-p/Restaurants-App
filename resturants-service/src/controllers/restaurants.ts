@@ -28,10 +28,11 @@ export const getRestaurantByName = async (req: Request, res: Response) => {
 
 export const addRestaurant = async (req: Request, res: Response) => {
     const { name, restauranttype, phone, address } = req.body;
+    console.log("=========" + name, restauranttype, phone, address + "========");
     try {
         //change to insert to the csv not the pg
         await query('INSERT INTO restaurants(name, restauranttype, address, phone) VALUES($1, $2, $3, $4)', [name, restauranttype, phone, address]);
-        res.status(201).send(`Restaurant added with name: ${name}`);
+        res.status(201).json({ message: `Restaurant added with name: ${name}` });
     } catch (err) {
         if(err instanceof Error){
             console.log(err);
@@ -62,7 +63,6 @@ export const deleteRestaurant = async (req: Request, res: Response) => {
     try {
         //change to delete to the csv not the pg
         await query('DELETE FROM restaurants WHERE name = $1', [name]);
-        //res.status(200).send(`Restaurant deleted with name: ${name}`);
         res.status(200).json({ message: `Restaurant deleted with name: ${name}` });
     } catch (err) {
         if(err instanceof Error){

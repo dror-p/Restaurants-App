@@ -1,7 +1,7 @@
-const HOST = "	trumpet.db.elephantsql.com";
-const USER = "tcnqdocx";
-const PASSWORD = "emo367LMybZni_Tu5a8c9vs1bo5CM_sH";
-const DB = "tcnqdocx";
+const HOST = "ask Dror";
+const USER = "ask Dror";
+const PASSWORD = "ask Dror";
+const DB = "ask Dror";
 const dialect = "postgres";
 const pool = {
     max: 5,

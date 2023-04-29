@@ -1,12 +1,35 @@
 <h1>{{ title }}</h1>
-<h2>Restaurant List</h2>
 
-<!-- <button (click)="createRestaurant()">Create New Restaurant</button> -->
+<button (click)="showAddForm = true">Add Restaurant</button>
+
+<div *ngIf="showAddForm">
+  <form>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="newRestaurant.name" name="name" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+      <label for="restauranttype">Restaurant Type:</label>
+      <input type="text" id="restauranttype" [(ngModel)]="newRestaurant.restauranttype" name="restauranttype" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" [(ngModel)]="newRestaurant.phone" name="phone" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div>
+      <label for="address">Address:</label>
+      <input type="text" id="address" [(ngModel)]="newRestaurant.address" name="address" [ngModelOptions]="{standalone: true}">
+    </div>
+    <button (click)="addRestaurant(newRestaurant); showAddForm = false">Submit</button>
+    <button (click)="showAddForm = false">Cancel</button>
+  </form>
+</div>
+
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Type</th>
+      <th>Restaurant Type</th>
       <th>Phone</th>
       <th>Address</th>
       <th>Actions</th>
@@ -19,18 +42,10 @@
       <td>{{ restaurant.phone }}</td>
       <td>{{ restaurant.address }}</td>
       <td>
+        <button (click)="deleteRestaurant(restaurant.name)">Delete</button>
         <button (click)="updateRestaurant(restaurant.name, restaurant.restauranttype, restaurant.phone, restaurant.address)">Update</button>
         <button (click)="deleteRestaurant(restaurant.name)">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
-
-<!-- <ul>
-  <li *ngFor="let restaurant of restaurants">
-    {{ restaurant.name }} - {{ restaurant.restauranttype }} - {{ restaurant.phone }} - {{ restaurant.address }}
-    <button (click)="deleteRestaurant(restaurant.name)">Delete</button>
-  </li>
-</ul> -->
-
-

@@ -10,8 +10,22 @@ import { RestaurantService } from './services/restaurant.service';
 export class AppComponent implements OnInit {
   title = "Restaurants-App";
   restaurants: Restaurant[] = [];
+  showAddForm = false;
+  newRestaurant: Restaurant = {
+    name: '',
+    restauranttype: '',
+    phone: '',
+    address: ''
+  };
 
-  constructor(private restaurantService: RestaurantService) {}
+  constructor(private restaurantService: RestaurantService) {
+    this.newRestaurant = {
+      name: '',
+      restauranttype: '',
+      phone: '',
+      address: ''
+    };
+  }
 
   ngOnInit() {
     this.restaurantService.getRestaurants().subscribe(restaurants => {
@@ -19,12 +33,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-  addRestaurant(name: string, restauranttype: string, phone: string, address: string) {
-    this.restaurantService.addRestaurant({ name, restauranttype, phone, address } as Restaurant)
+  addRestaurant(restaurant: Restaurant) {
+    this.restaurantService.addRestaurant(this.newRestaurant)
       .subscribe(restaurant => {
         this.restaurants.push(restaurant);
       });
   }
+  
 
   updateRestaurant(name: string, restauranttype: string, phone: string, address: string) {
     this.restaurantService.updateRestaurant({ name, restauranttype, phone, address } as Restaurant)

@@ -11,10 +11,10 @@ type restaurant = {
   address: string;
 };
 
-const apiKey = 'AIzaSyBj2dU8iIBi8hfinE2S4HkJkrVJ4HApG-E';//move to config
+const apiKey = 'ask Dror';//move to config
 
 const pool = new Pool({
-    connectionString: 'postgres://tcnqdocx:emo367LMybZni_Tu5a8c9vs1bo5CM_sH@trumpet.db.elephantsql.com:5432/tcnqdocx',//move to config
+    connectionString: 'ask Dror',//move to config
 });
 
 async function getAddress(lat: number, lon: number): Promise<string> {
@@ -22,6 +22,7 @@ async function getAddress(lat: number, lon: number): Promise<string> {
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`;
         const response = await rp(url);
         const jsonData = JSON.parse(response);
+        console.log(jsonData);
         if (jsonData.results.length > 0) {
             return jsonData.results[0].formatted_address;
         } else {
